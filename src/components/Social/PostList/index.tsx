@@ -498,7 +498,7 @@ export default function PostList({
                 <Text style={styles.headerText}>{user?.displayName}</Text>
               </TouchableOpacity>
 
-              {communityName && (
+              {communityName ? (
                 <>
                   <SvgXml
                     style={styles.arrow}
@@ -511,7 +511,7 @@ export default function PostList({
                     <Text style={styles.headerText}>{communityName}</Text>
                   </TouchableOpacity>
                 </>
-              )}
+              ):null}
             </View>
             <View style={styles.timeRow}>
 
@@ -542,7 +542,7 @@ export default function PostList({
         </View>
 
         {likeReaction === 0 && commentsCount === 0 ? (
-          ''
+        <Text>''</Text>
         ) : (
           <TouchableWithoutFeedback onPress={() => onClickComment()}>
             <View style={styles.countSection}>
