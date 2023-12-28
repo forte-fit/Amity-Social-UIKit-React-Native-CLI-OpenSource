@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { CategoryRepository, CommunityRepository } from '@amityco/ts-sdk-react-native';
+import {
+  CategoryRepository,
+  CommunityRepository,
+} from '@amityco/ts-sdk-react-native';
 import { useState, useEffect } from 'react';
 // import { useTranslation } from 'react-i18next';
 
@@ -10,8 +13,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import useAuth from '../../hooks/useAuth';
 
 export default function Explore() {
-
-  const styles = getStyles()
+  const styles = getStyles();
   const { apiRegion } = useAuth();
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const [recommendCommunityList, setRecommendCommunityList] = useState<
@@ -88,7 +90,7 @@ export default function Explore() {
             />
             <Text style={styles.columnText}>{categoryList[index]?.name}</Text>
           </TouchableOpacity>
-          {index + 1 < categoryList.length && (
+          {index + 1 < categoryList.length ? (
             <TouchableOpacity
               style={styles.column}
               onPress={() =>
@@ -114,7 +116,7 @@ export default function Explore() {
                 {categoryList[index + 1]?.name}
               </Text>
             </TouchableOpacity>
-          )}
+          ) : null}
         </View>
       );
     }

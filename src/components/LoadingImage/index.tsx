@@ -24,7 +24,7 @@ interface OverlayImageProps {
   index?: number;
   isUploaded: boolean;
   fileId?: string;
-  isEditMode?: boolean
+  isEditMode?: boolean;
 }
 const LoadingImage = ({
   source,
@@ -33,7 +33,7 @@ const LoadingImage = ({
   onLoadFinish,
   isUploaded = false,
   fileId = '',
-  isEditMode = false
+  isEditMode = false,
 }: OverlayImageProps) => {
   const theme = useTheme() as MyMD3Theme;
   const [loading, setLoading] = useState(true);
@@ -77,7 +77,6 @@ const LoadingImage = ({
       if (!isEditMode) {
         await deleteAmityFile(fileId);
       }
-
     }
   };
   useEffect(() => {
@@ -98,7 +97,7 @@ const LoadingImage = ({
           loading ? styles.loadingImage : styles.loadedImage,
         ]}
       />
-      {loading && (
+      {loading ? (
         <View style={styles.overlay}>
           {isProcess ? (
             <Progress.CircleSnail size={60} borderColor="transparent" />
@@ -111,12 +110,12 @@ const LoadingImage = ({
             />
           )}
         </View>
-      )}
-      {!loading && (
+      ) : null}
+      {!loading ? (
         <TouchableOpacity style={styles.closeButton} onPress={handleDelete}>
           <SvgXml xml={closeIcon(theme.colors.base)} width="12" height="12" />
         </TouchableOpacity>
-      )}
+      ) : null}
     </View>
   );
 };

@@ -35,20 +35,19 @@ export default function SocialNavigator() {
   // };
   return (
     <NavigationContainer independent={true}>
-      {isConnected && (
+      {isConnected ? (
         <Stack.Navigator
           screenOptions={{
             headerShadowVisible: false,
             contentStyle: {
               backgroundColor: 'white',
             },
-            headerStyle:{
+            headerStyle: {
               backgroundColor: theme.colors.background,
             },
-            headerTitleStyle:{
-              color: theme.colors.base
-            }
-
+            headerTitleStyle: {
+              color: theme.colors.base,
+            },
           }}
         >
           <Stack.Screen name="Home" component={Home} />
@@ -58,7 +57,7 @@ export default function SocialNavigator() {
           <Stack.Screen
             name="CategoryList"
             component={CategoryList}
-            options={({ }) => ({
+            options={({}) => ({
               title: 'Category',
             })}
           />
@@ -80,10 +79,13 @@ export default function SocialNavigator() {
           <Stack.Screen name="CommunityList" component={CommunityList} />
           <Stack.Screen name="AllMyCommunity" component={AllMyCommunity} />
           <Stack.Screen name="CreatePost" component={CreatePost} />
-          <Stack.Screen name="VideoPlayer"
+          <Stack.Screen
+            name="VideoPlayer"
             options={{
               headerShown: false,
-            }} component={VideoPlayerFull} />
+            }}
+            component={VideoPlayerFull}
+          />
           <Stack.Screen name="UserProfile" component={UserProfile} />
           <Stack.Screen name="EditProfile" component={EditProfile} />
           <Stack.Screen
@@ -91,7 +93,7 @@ export default function SocialNavigator() {
             component={UserProfileSetting}
           />
         </Stack.Navigator>
-      )}
+      ) : null}
     </NavigationContainer>
   );
 }

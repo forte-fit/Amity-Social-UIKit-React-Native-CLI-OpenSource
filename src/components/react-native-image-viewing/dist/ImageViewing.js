@@ -39,7 +39,7 @@ function ImageViewing({
   imageIndex,
   visible,
   onRequestClose,
-  onLongPress = () => { },
+  onLongPress = () => {},
   onImageIndexChange,
   animationType = DEFAULT_ANIMATION_TYPE,
   backgroundColor = DEFAULT_BG_COLOR,
@@ -50,7 +50,7 @@ function ImageViewing({
   HeaderComponent,
   FooterComponent,
   isVideoButton,
-  onClickPlayButton = () => { },
+  onClickPlayButton = () => {},
   videoPosts,
 }) {
   const { apiRegion } = useAuth();
@@ -58,10 +58,11 @@ function ImageViewing({
   const imageList = useRef(null);
   const [opacity, onRequestCloseEnhanced] = useRequestClose(onRequestClose);
   const [currentImageIndex, onScroll] = useImageIndexChange(imageIndex, SCREEN);
-  const [headerTransform, footerTransform, toggleBarsVisible] = useAnimatedComponents();
+  const [headerTransform, footerTransform, toggleBarsVisible] =
+    useAnimatedComponents();
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [playingUri, setPlayingUri] = useState('')
+  const [playingUri, setPlayingUri] = useState('');
   const videoPlayerRef = useRef(null);
 
   useEffect(() => {
@@ -84,30 +85,33 @@ function ImageViewing({
     [imageList]
   );
   const playVideoFullScreen = async () => {
-    if(Platform.OS === 'ios'){
+    if (Platform.OS === 'ios') {
       onClickPlayButton(currentImageIndex);
-      setIsPlaying(true)
-      setPlayingUri(`https://api.${apiRegion}.amity.co/api/v3/files/${videoPosts[currentImageIndex]?.videoFileId?.original}/download`)
-    }else{
-      navigation.navigate('VideoPlayer', { source: `https://api.${apiRegion}.amity.co/api/v3/files/${videoPosts[currentImageIndex]?.videoFileId?.original}/download` })
+      setIsPlaying(true);
+      setPlayingUri(
+        `https://api.${apiRegion}.amity.co/api/v3/files/${videoPosts[currentImageIndex]?.videoFileId?.original}/download`
+      );
+    } else {
+      navigation.navigate('VideoPlayer', {
+        source: `https://api.${apiRegion}.amity.co/api/v3/files/${videoPosts[currentImageIndex]?.videoFileId?.original}/download`,
+      });
     }
-
   };
 
   useEffect(() => {
-     if (videoPlayerRef && playingUri && isPlaying) {
-       videoPlayerRef.current.presentFullscreenPlayer();
+    if (videoPlayerRef && playingUri && isPlaying) {
+      videoPlayerRef.current.presentFullscreenPlayer();
     }
-  }, [playingUri, isPlaying])
-  
+  }, [playingUri, isPlaying]);
+
   if (!visible) {
     return null;
   }
 
   const onClosePlayer = () => {
     setIsPlaying(false);
-    setPlayingUri('')
-  }
+    setPlayingUri('');
+  };
 
   return (
     <Modal
@@ -161,14 +165,14 @@ function ImageViewing({
                 swipeToCloseEnabled={swipeToCloseEnabled}
                 doubleTapToZoomEnabled={doubleTapToZoomEnabled}
               />
-              {isVideoButton && (
+              {isVideoButton ? (
                 <TouchableOpacity
                   style={styles.playButton}
                   onPress={playVideoFullScreen}
                 >
                   <SvgXml xml={playBtn} width="50" height="50" />
                 </TouchableOpacity>
-              )}
+              ) : null}
             </View>
           )}
           onMomentumScrollEnd={onScroll}
@@ -177,11 +181,11 @@ function ImageViewing({
             keyExtractor
               ? keyExtractor(imageSrc, index)
               : typeof imageSrc === 'number'
-                ? `${imageSrc}`
-                : imageSrc.uri
+              ? `${imageSrc}`
+              : imageSrc.uri
           }
         />
-        {typeof FooterComponent !== 'undefined' && (
+        {typeof FooterComponent !== 'undefined' ? (
           <Animated.View
             style={[styles.footer, { transform: footerTransform }]}
           >
@@ -189,19 +193,15 @@ function ImageViewing({
               imageIndex: currentImageIndex,
             })}
           </Animated.View>
-        )}
+        ) : null}
       </View>
 
-    
-        <Video
-          source={{ uri: playingUri }}
-          onVideoFullscreenPlayerWillDismiss={onClosePlayer}
-          ref={videoPlayerRef}
-          fullscreen={true}
-
-        />
-
-
+      <Video
+        source={{ uri: playingUri }}
+        onVideoFullscreenPlayerWillDismiss={onClosePlayer}
+        ref={videoPlayerRef}
+        fullscreen={true}
+      />
     </Modal>
   );
 }
