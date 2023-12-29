@@ -51,7 +51,7 @@ export const getStyles = () => {
       marginHorizontal: 3,
       zIndex: 999,
       paddingVertical: 5,
-
+      color:theme.colors.base,
       // Additional styles if needed
     },
     transparentText: {
@@ -85,7 +85,7 @@ export const getStyles = () => {
       flex: 1,
     },
     InputWrap: {
-      backgroundColor: '#FFFFFF',
+      backgroundColor: theme.colors.background,
       width: '100%',
       flexDirection: 'row',
       justifyContent: 'space-around',
