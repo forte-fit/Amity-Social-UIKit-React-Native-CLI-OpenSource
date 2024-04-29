@@ -157,7 +157,7 @@ if (Platform.OS === 'ios') {
             <View>
               {/* Your overlay content */}
 
-              {!playingUri && <ImageItem
+              {!playingUri ? <ImageItem
                 onZoom={onZoom}
                 imageSrc={imageSrc}
                 onRequestClose={onRequestCloseEnhanced}
@@ -165,15 +165,15 @@ if (Platform.OS === 'ios') {
                 delayLongPress={delayLongPress}
                 swipeToCloseEnabled={swipeToCloseEnabled}
                 doubleTapToZoomEnabled={doubleTapToZoomEnabled}
-              />}
-              {isVideoButton && !playingUri &&(
+              /> : null}
+              {isVideoButton && !playingUri ? (
               <TouchableOpacity
               style={styles.playButton}
               onPress={playVideoFullScreen}
               >
                   <SvgXml xml={playBtn} width="50" height="50" />
               </TouchableOpacity>
-              )}
+              ) : null}
             </View>
           )}
           onMomentumScrollEnd={onScroll}
@@ -185,7 +185,7 @@ if (Platform.OS === 'ios') {
               : imageSrc.uri
           }
         />
-        {typeof FooterComponent !== 'undefined' && (
+        {typeof FooterComponent !== 'undefined' ? (
           <Animated.View
             style={[styles.footer, { transform: footerTransform }]}
           >
@@ -193,15 +193,15 @@ if (Platform.OS === 'ios') {
               imageIndex: currentImageIndex,
             })}
           </Animated.View>
-        )}
-      {playingUri && <Video 
+        ) : null}
+      {playingUri ? <Video 
        resizeMode='contain'
        style={{width : "100%", height : "100%"}}
        controls={true}
        source={{ uri: playingUri }}
        onVideoFullscreenPlayerWillDismiss={onClosePlayer}
        ref={videoPlayerRef}
-     />}
+     /> : null}
       </View>
     </Modal>
   );

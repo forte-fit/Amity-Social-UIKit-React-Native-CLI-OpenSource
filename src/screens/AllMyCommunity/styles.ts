@@ -9,6 +9,7 @@ export const useStyles = () => {
   const { excludes } = useConfig();
   const styles = StyleSheet.create({
     container: {
+      flex: 1,
       backgroundColor: theme.colors.background,
       paddingBottom: excludes.includes(ComponentID.StoryTab) ? 0 : 250,
     },
@@ -34,7 +35,6 @@ export const useStyles = () => {
     input: {
       flex: 1,
       marginHorizontal: 6,
-      backgroundColor: theme.colors.secondary,
       color: theme.colors.base,
     },
     cancelBtn: {

@@ -412,7 +412,7 @@ export default function PostList({
                 <Text style={styles.headerText}>{user?.displayName}</Text>
               </TouchableOpacity>
 
-              {communityName && (
+              {communityName ? (
                 <View style={styles.communityNameContainer}>
                   <SvgXml
                     style={styles.arrow}
@@ -431,7 +431,7 @@ export default function PostList({
                     </Text>
                   </TouchableOpacity>
                 </View>
-              )}
+              ) : null}
             </View>
             <View style={styles.timeRow}>
               <Text style={styles.headerTextTime}>{timeDifference}</Text>
@@ -450,19 +450,20 @@ export default function PostList({
       </View>
       <View>
         <View style={styles.bodySection}>
-          {textPost && (
+          {textPost ? (
             <RenderTextWithMention
               mentionPositionArr={[...mentionPositionArr]}
               textPost={textPost}
             />
-          )}
-          {childrenPosts?.length > 0 && (
+          ) : null}
+          {childrenPosts?.length > 0 ? (
             <MediaSection childrenPosts={childrenPosts} />
-          )}
+          ) : null}
         </View>
 
         {likeReaction === 0 && commentsCount === 0 ? (
-          ''
+          // ''
+          null
         ) : (
           <View>
             <View style={styles.countSection}>
@@ -473,12 +474,12 @@ export default function PostList({
               ) : (
                 <Text />
               )}
-              {commentsCount > 0 && (
+              {commentsCount > 0 ? (
                 <Text style={styles.commentCountText}>
                   {commentsCount > 0 && commentsCount}{' '}
                   {renderCommentText(commentsCount)}
                 </Text>
-              )}
+              ) : null}
             </View>
           </View>
         )}

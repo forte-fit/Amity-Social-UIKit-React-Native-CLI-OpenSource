@@ -55,7 +55,7 @@ export const useStyle = () => {
       width: 40,
       height: 40,
       borderRadius: 25,
-      backgroundColor: '#ededed',
+      backgroundColor: theme.colors.primary,
       alignItems: 'center',
       justifyContent: 'center',
     },

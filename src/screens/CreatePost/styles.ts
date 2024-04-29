@@ -85,7 +85,7 @@ export const useStyles = () => {
       flex: 1,
     },
     InputWrap: {
-      backgroundColor: '#FFFFF',
+      backgroundColor: theme.colors.background,
       width: '100%',
       flexDirection: 'row',
       justifyContent: 'space-around',

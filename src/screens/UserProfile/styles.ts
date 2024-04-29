@@ -12,6 +12,7 @@ export const useStyles = () => {
       // alignItems: 'center',
       width: '100%',
       justifyContent: 'flex-start',
+      backgroundColor: theme.colors.background,
     },
     loadingIndicator: {
       flex: 1,
