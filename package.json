@@ -125,7 +125,6 @@
     "react-native-netinfo": "^1.1.0",
     "react-native-push-notification": "^8.1.1",
     "react-native-safe-area-context": "^4.7.2",
-    "react-native-screens": "^3.25.0",
     "react-native-svg": "^14.1.0",
     "react-native-video": "^6.0.0-beta.6",
     "react-native-vision-camera": "^3.9.2",
@@ -209,6 +208,7 @@
     ]
   },
   "dependencies": {
+    "react-native-screens": "^3.25.0",
     "@amityco/ts-sdk-react-native": "^6.31.1",
     "@amityco/video-broadcaster-react-native": "^1.0.0",
     "@amityco/video-player-react-native": "^1.0.0",
